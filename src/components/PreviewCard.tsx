@@ -1,24 +1,29 @@
-import type { CardColor } from "../App";
+import type { CardColor } from "../types";
+import { COLOR_BG_MAP } from "../constants/colors";
 
-const bgColors = {
-    amber: "bg-amber-300",
-    lime: "bg-lime-300",
-    teal: "bg-teal-300",
-};
+/**
+ * PreviewCard コンポーネントのProps
+ */
+interface PreviewCardProps {
+  /** 表示する名前 */
+  name: string;
+  /** カードの背景色 */
+  color: CardColor;
+}
 
-type PreviewProps = {
-    name: string;
-    color: CardColor;
-};
+/**
+ * カードのプレビューを表示するコンポーネント
+ *
+ * 選択された色と名前でカードをレンダリングする
+ */
+export const PreviewCard = ({ name, color }: PreviewCardProps) => {
+  const bgColorClass = COLOR_BG_MAP[color];
 
-export const PreviewCard = ({ name, color }: PreviewProps) => {
-    return (
-        <>
-            <div className={`card shadow-sm ${bgColors[color]}`}>
-                <div className="card-body">
-                    <div className="text-center text-lg font-bold tracking-wide">{name}</div>
-                </div>
-            </div>
-        </>
-    );
+  return (
+    <div className={`card shadow-sm ${bgColorClass}`}>
+      <div className="card-body">
+        <h2 className="text-center text-lg font-bold tracking-wide">{name}</h2>
+      </div>
+    </div>
+  );
 };

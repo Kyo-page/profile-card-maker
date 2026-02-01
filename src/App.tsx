@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { PreviewCard } from "./components/PreviewCard";
 import { CardEditor } from "./components/CardEditor";
-
-export type CardColor = "amber" | "lime" | "teal";
+import type { CardColor } from "./type";
 
 function App() {
     const [name, setName] = useState("John Smith");

@@ -1,0 +1,37 @@
+@import 'tailwindcss';
+@plugin "daisyui";
+
+@plugin "daisyui/theme" {
+  name: 'HappyHues15';
+  default: true;
+  prefersdark: false;
+  color-scheme: 'light';
+  --color-base-100: #fffffe;
+  --color-base-200: #faeee7;
+  --color-base-300: #f0e6df;
+  --color-base-content: #33272a;
+  --color-primary: #ff8ba7;
+  --color-primary-content: #33272a;
+  --color-secondary: #ffc6c7;
+  --color-secondary-content: #33272a;
+  --color-accent: #c3f0ca;
+  --color-accent-content: #33272a;
+  --color-neutral: #594a4e;
+  --color-neutral-content: #fffffe;
+  --color-info: oklch(68% 0.169 237.323);
+  --color-info-content: oklch(97% 0.013 236.62);
+  --color-success: oklch(72% 0.219 149.579);
+  --color-success-content: oklch(98% 0.018 155.826);
+  --color-warning: oklch(76% 0.188 70.08);
+  --color-warning-content: oklch(98% 0.022 95.277);
+  --color-error: oklch(64% 0.246 16.439);
+  --color-error-content: oklch(96% 0.015 12.422);
+  --radius-selector: 2rem;
+  --radius-field: 0.5rem;
+  --radius-box: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 1;
+}

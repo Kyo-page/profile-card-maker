@@ -9,7 +9,7 @@ const bgColors = {
 export const PreviewCard = ({ name, color }: PreviewProps) => {
     return (
         <>
-            <div className={`card shadow-sm ${bgColors[color]}`}>
+            <div className={`card w-full shadow-sm ${bgColors[color]}`}>
                 <div className="card-body">
                     <div className="text-center text-lg font-bold tracking-wide">{name}</div>
                 </div>

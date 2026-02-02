@@ -3,7 +3,7 @@ import type { EditorProps } from "../type";
 export const CardEditor = ({ name, setName, color, setColor }: EditorProps) => {
     return (
         <>
-            <div className="card bg-white shadow-sm mt-4">
+            <div className="card w-full bg-white shadow-sm">
                 <div className="card-body">
                     <fieldset className="fieldset">
                         <legend className="fieldset-legend">Your name</legend>

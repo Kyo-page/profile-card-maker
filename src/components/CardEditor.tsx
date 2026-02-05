@@ -1,23 +1,34 @@
-import type { EditorProps } from "../type";
+import type { EditorProps, SNS } from "../type";
+import { type ChangeEvent } from "react";
 
-export const CardEditor = ({ name, setName, color, setColor }: EditorProps) => {
+export const CardEditor = ({
+    color,
+    setColor,
+    setImage,
+    name,
+    setName,
+    title,
+    setTitle,
+    message,
+    setMessage,
+    snsAccounts,
+    setSnsAccounts,
+}: EditorProps) => {
+    const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            const imageUrl = URL.createObjectURL(file);
+            setImage(imageUrl);
+        }
+    };
+
     return (
         <>
             <div className="card w-full bg-white shadow-sm">
                 <div className="card-body">
                     <fieldset className="fieldset">
-                        <legend className="fieldset-legend">Your name</legend>
-                        <input
-                            type="text"
-                            className="input"
-                            placeholder="Type here"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                        />
-                    </fieldset>
-                    <fieldset className="fieldset">
-                        <legend className="fieldset-legend">Color</legend>
-                        <div className="flex gap-2">
+                        <legend className="fieldset-legend">カードの色</legend>
+                        <div className="flex flex-wrap gap-2">
                             {/* Amber */}
                             <input
                                 type="radio"
@@ -44,6 +55,107 @@ export const CardEditor = ({ name, setName, color, setColor }: EditorProps) => {
                                 onChange={() => setColor("teal")}
                                 className="radio bg-teal-100 border-teal-300 checked:bg-teal-200 checked:text-teal-600 checked:border-teal-600"
                             />
+
+                            {/* Blue */}
+                            <input
+                                type="radio"
+                                name="color-group"
+                                checked={color === "blue"}
+                                onChange={() => setColor("blue")}
+                                className="radio bg-blue-100 border-blue-300 checked:bg-blue-200 checked:text-blue-600 checked:border-blue-600"
+                            />
+
+                            {/* Pink */}
+                            <input
+                                type="radio"
+                                name="color-group"
+                                checked={color === "pink"}
+                                onChange={() => setColor("pink")}
+                                className="radio bg-pink-100 border-pink-300 checked:bg-pink-200 checked:text-pink-600 checked:border-pink-600"
+                            />
+
+                            {/* Rose */}
+                            <input
+                                type="radio"
+                                name="color-group"
+                                checked={color === "rose"}
+                                onChange={() => setColor("rose")}
+                                className="radio bg-rose-100 border-rose-300 checked:bg-rose-200 checked:text-rose-600 checked:border-rose-600"
+                            />
+                        </div>
+                    </fieldset>
+                    <fieldset className="fieldset">
+                        <legend className="fieldset-legend">アイコン画像</legend>
+                        <input type="file" accept="image/*" onChange={handleImageChange} className="file-input" />
+                    </fieldset>
+                    <fieldset className="fieldset">
+                        <legend className="fieldset-legend">名前</legend>
+                        <input type="text" className="input" value={name} onChange={(e) => setName(e.target.value)} />
+                    </fieldset>
+                    <fieldset className="fieldset">
+                        <legend className="fieldset-legend">肩書き</legend>
+                        <input type="text" className="input" value={title} onChange={(e) => setTitle(e.target.value)} />
+                    </fieldset>
+                    <fieldset className="fieldset">
+                        <legend className="fieldset-legend">メッセージ</legend>
+                        <textarea className="textarea" value={message} onChange={(e) => setMessage(e.target.value)} />
+                    </fieldset>
+                    <fieldset className="fieldset">
+                        <legend className="fieldset-legend">SNSアカウント</legend>
+                        <div className="space-y-2">
+                            {snsAccounts.map((sns, index) => (
+                                <div key={index} className="flex gap-2 items-center">
+                                    <select
+                                        className="select flex-1"
+                                        value={sns.type}
+                                        onChange={(e) => {
+                                            const newAccounts = [...snsAccounts];
+                                            newAccounts[index] = {
+                                                ...newAccounts[index],
+                                                type: e.target.value as SNS["type"],
+                                            };
+                                            setSnsAccounts(newAccounts);
+                                        }}
+                                    >
+                                        <option value="X">X (Twitter)</option>
+                                        <option value="GitHub">GitHub</option>
+                                        <option value="Instagram">Instagram</option>
+                                    </select>
+                                    <input
+                                        type="text"
+                                        className="input flex-1"
+                                        placeholder="アカウントID"
+                                        value={sns.id}
+                                        onChange={(e) => {
+                                            const newAccounts = [...snsAccounts];
+                                            newAccounts[index] = {
+                                                ...newAccounts[index],
+                                                id: e.target.value,
+                                            };
+                                            setSnsAccounts(newAccounts);
+                                        }}
+                                    />
+                                    <button
+                                        type="button"
+                                        className="btn btn-sm btn-neutral-300"
+                                        onClick={() => {
+                                            const newAccounts = snsAccounts.filter((_, i) => i !== index);
+                                            setSnsAccounts(newAccounts);
+                                        }}
+                                    >
+                                        削除
+                                    </button>
+                                </div>
+                            ))}
+                            <button
+                                type="button"
+                                className="btn btn-sm btn-secondary w-full"
+                                onClick={() => {
+                                    setSnsAccounts([...snsAccounts, { type: "X", id: "" }]);
+                                }}
+                            >
+                                + SNSアカウントを追加
+                            </button>
                         </div>
                     </fieldset>
                 </div>

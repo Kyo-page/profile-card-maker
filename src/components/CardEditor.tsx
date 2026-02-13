@@ -24,7 +24,7 @@ export const CardEditor = ({
 
     return (
         <>
-            <div className="card w-full bg-white shadow-sm">
+            <div className="card w-1/2 bg-white shadow-sm">
                 <div className="card-body">
                     <fieldset className="fieldset">
                         <legend className="fieldset-legend">カードの色</legend>
@@ -81,6 +81,15 @@ export const CardEditor = ({
                                 checked={color === "rose"}
                                 onChange={() => setColor("rose")}
                                 className="radio bg-rose-100 border-rose-300 checked:bg-rose-200 checked:text-rose-600 checked:border-rose-600"
+                            />
+
+                            {/* Gray */}
+                            <input
+                                type="radio"
+                                name="color-group"
+                                checked={color === "gray"}
+                                onChange={() => setColor("gray")}
+                                className="radio bg-gray-100 border-gray-300 checked:bg-gray-200 checked:text-gray-600 checked:border-gray-600"
                             />
                         </div>
                     </fieldset>

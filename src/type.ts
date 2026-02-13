@@ -1,4 +1,4 @@
-export type CardColor = "amber" | "lime" | "teal" | "blue" | "pink" | "rose";
+export type CardColor = "amber" | "lime" | "teal" | "blue" | "pink" | "rose" | "gray";
 export type SNS = {
     type: "X" | "GitHub" | "Instagram" | "Web";
     id: string;

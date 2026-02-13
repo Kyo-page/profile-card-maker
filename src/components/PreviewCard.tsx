@@ -1,19 +1,21 @@
 import type { PreviewProps } from "../type";
+import { forwardRef } from "react";
 import { FaXTwitter, FaGithub, FaInstagram } from "react-icons/fa6";
 
 const bgColors = {
-    amber: "bg-amber-300",
-    lime: "bg-lime-300",
-    teal: "bg-teal-300",
-    blue: "bg-blue-300",
-    pink: "bg-pink-300",
-    rose: "bg-rose-300",
+    amber: "bg-amber-200",
+    lime: "bg-lime-200",
+    teal: "bg-teal-200",
+    blue: "bg-blue-200",
+    pink: "bg-pink-200",
+    rose: "bg-rose-200",
+    gray: "bg-gray-200",
 };
 
-export const PreviewCard = ({ color, image, name, title, message, snsAccounts }: PreviewProps) => {
-    return (
-        <>
-            <div className={`card w-full shadow-sm ${bgColors[color]}`}>
+export const PreviewCard = forwardRef<HTMLDivElement, PreviewProps>(
+    ({ color, image, name, title, message, snsAccounts }, ref) => {
+        return (
+            <div ref={ref} className={`card w-full shadow-sm ${bgColors[color]}`}>
                 <div className="card-body items-center gap-4">
                     <img src={image} className="rounded-full max-w-30" />
                     <div className="space-y-1">
@@ -38,6 +40,7 @@ export const PreviewCard = ({ color, image, name, title, message, snsAccounts }:
                     </div>
                 </div>
             </div>
-        </>
-    );
-};
+        );
+    }
+);
+PreviewCard.displayName = "PreviewCard";
